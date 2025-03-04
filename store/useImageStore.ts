@@ -1,7 +1,8 @@
+import { UnsplashImage } from "@/types/image";
 import { create } from "zustand";
 
 interface ImageState {
-  images: any[];
+  images: UnsplashImage[];
   page: number;
   fetchImages: (query?: string, reset?: boolean) => void;
 }

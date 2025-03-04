@@ -11,23 +11,35 @@ export default function ImageGrid() {
     fetchImages();
   }, []);
 
-  // Infinite scrolling
+  // Infinite scrolling with debouncing
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
     const handleScroll = () => {
-      if (
-        window.innerHeight + window.scrollY >= document.body.offsetHeight - 100
-      ) {
-        fetchImages();
-      }
+      if (timeout) clearTimeout(timeout);
+
+      timeout = setTimeout(() => {
+        if (
+          window.innerHeight + window.scrollY >= document.body.offsetHeight - 100
+        ) {
+          fetchImages();
+        }
+      }, 200); // Debounce to prevent excessive API calls
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      clearTimeout(timeout);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
+  // Remove duplicate images before rendering
+  const uniqueImages = Array.from(new Map(images.map((img) => [img.id, img])).values());
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {images.map((image) => (
+      {uniqueImages.map((image) => (
         <ImageCard key={image.id} image={image} />
       ))}
     </div>

@@ -1,8 +1,9 @@
 import { create } from "zustand";
+import { UnsplashImage } from "@/types/image";
 
 interface FavoritesState {
-  favorites: any[];
-  addFavorite: (image: any) => void;
+  favorites: UnsplashImage[];
+  addFavorite: (image: UnsplashImage) => void;
   removeFavorite: (id: string) => void;
 }
 
