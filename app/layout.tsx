@@ -7,7 +7,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en" className={darkMode ? "dark" : ""}>
-      <body className="bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
+      <body className=" font-playwrite bg-gray-100 dark:bg-gray-900 text-black dark:text-white">
         {children}
       </body>
     </html>

@@ -1,17 +1,12 @@
-"use client";
-
-import { useThemeStore } from "@/store/useThemeStore";
-
 export default function Navbar() {
-  const { darkMode, toggleTheme } = useThemeStore();
-
   return (
-    <nav className={`p-4 ${darkMode ? "bg-gray-900 text-white" : "bg-white text-black"}`}>
-      <div className="flex justify-between">
-        <h1 className="text-xl font-bold">Unsplash Clone</h1>
-        <button onClick={toggleTheme} className="p-2 border rounded">
-          {darkMode ? "☀️ Light" : "🌙 Dark"}
-        </button>
+    <nav className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md py-4">
+      <div className="container mx-auto flex justify-between items-center px-6">
+        <div>
+          <button className="p-2 bg-gray-200 dark:bg-gray-800 rounded-full hover:bg-gray-300 dark:hover:bg-gray-700">
+            🌙
+          </button>
+        </div>
       </div>
     </nav>
   );
